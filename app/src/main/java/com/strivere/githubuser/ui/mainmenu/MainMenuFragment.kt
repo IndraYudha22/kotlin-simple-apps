@@ -4,13 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.strivere.githubuser.R
 import com.strivere.githubuser.data.GithubUser
 import com.strivere.githubuser.ui.RecyclerViewClickListener
 import com.strivere.githubuser.ui.detail.DetailFragment
+import com.strivere.githubuser.utils.Initial
 import kotlinx.android.synthetic.main.main_menu_fragment.*
 import org.json.JSONObject
 import java.io.InputStream
@@ -73,22 +73,31 @@ class MainMenuFragment : Fragment(), RecyclerViewClickListener {
         }
     }
 
-    override fun onRecyclerViewItemClick(
-        view: View,
-        githubUser: GithubUser,
-        username: String,
-        name: String,
-        avatar: String
-    ) {
-        showDetailFragment(name, username, avatar)
-    }
 
-    fun showDetailFragment(name: String, username: String, avatar: String){
-        val detailFragment : Fragment = DetailFragment.newInstance(name, username, avatar)
+    fun showDetailFragment(name: String, username: String, avatar: String, company: String, location: String, repository: Int, follower: Int, following: Int){
+        val bundle = Bundle()
+        val detailFragment: Fragment = DetailFragment()
         val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        bundle.putParcelable(Initial.Users, GithubUser(avatar, company, follower, following, location, name, repository, username))
+        detailFragment.arguments = bundle
         transaction.replace(R.id.fragment, detailFragment)
         transaction.addToBackStack(null)
         transaction.commit()
+    }
+
+    override fun onRecyclerViewItemClick(
+        view: View,
+        githubUser: GithubUser,
+        name: String,
+        username: String,
+        avatar: String,
+        company: String,
+        location: String,
+        repository: Int,
+        follower: Int,
+        following: Int
+    ) {
+        showDetailFragment(name, username, avatar, company, location, repository, follower, following)
     }
 
 }

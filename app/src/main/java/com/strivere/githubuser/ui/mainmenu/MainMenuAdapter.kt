@@ -33,9 +33,14 @@ class MainMenuAdapter (private val githubuser : List<GithubUser>, private val li
         holder.bindItem(githubuser[position])
         holder.recyclerviewMenuBinding.layoutRv.setOnClickListener {
             listener.onRecyclerViewItemClick(holder.recyclerviewMenuBinding.layoutRv, githubuser[position],
-                githubuser[holder.adapterPosition].username,
                 githubuser[holder.adapterPosition].name,
-                githubuser[holder.adapterPosition].avatar)
+                githubuser[holder.adapterPosition].username,
+                githubuser[holder.adapterPosition].avatar,
+                githubuser[holder.adapterPosition].company,
+                githubuser[holder.adapterPosition].location,
+                githubuser[holder.adapterPosition].repository,
+                githubuser[holder.adapterPosition].follower,
+                githubuser[holder.adapterPosition].following)
         }
     }
 
