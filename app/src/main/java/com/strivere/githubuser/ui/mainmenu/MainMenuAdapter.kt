@@ -1,5 +1,7 @@
 package com.strivere.githubuser.ui.mainmenu
 
+import android.content.Context
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +21,8 @@ import java.util.*
 class MainMenuAdapter (private val githubuser : List<GithubUser>, private val listener: RecyclerViewClickListener)
     : RecyclerView.Adapter<MainMenuAdapter.MainMenuViewHolder>(){
 
+    val context: Context? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         MainMenuViewHolder(
             DataBindingUtil.inflate(
@@ -36,6 +40,7 @@ class MainMenuAdapter (private val githubuser : List<GithubUser>, private val li
     override fun onBindViewHolder(holder: MainMenuViewHolder, position: Int) {
         holder.recyclerviewMenuBinding.githubuser = githubuser[position]
         holder.bindItem(githubuser[position])
+
     }
 
     inner class MainMenuViewHolder(
@@ -52,8 +57,4 @@ class MainMenuAdapter (private val githubuser : List<GithubUser>, private val li
         }
 
     }
-
-
-
-
 }
