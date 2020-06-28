@@ -201,8 +201,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginStart="25dp"
-                android:layout_marginEnd="25dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="16dp">
                 <ImageView
@@ -216,7 +216,7 @@
                     android:layout_height="match_parent"
                     android:text="@string/company"
                     android:layout_marginStart="16dp"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     android:gravity="center_vertical"
                     android:textColor="@android:color/black"/>
             </LinearLayout>
@@ -225,8 +225,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginStart="25dp"
-                android:layout_marginEnd="25dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
                 android:layout_marginBottom="16dp">
                 <ImageView
                     android:layout_width="35dp"
@@ -239,7 +239,7 @@
                     android:layout_height="match_parent"
                     android:text="@string/location"
                     android:layout_marginStart="16dp"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     android:gravity="center_vertical"
                     android:textColor="@android:color/black"/>
             </LinearLayout>
