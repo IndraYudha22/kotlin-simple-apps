@@ -1,7 +1,8 @@
-package com.strivere.githubuser
+package com.strivere.githubuser.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.strivere.githubuser.R
 
 class MainActivity : AppCompatActivity() {
 

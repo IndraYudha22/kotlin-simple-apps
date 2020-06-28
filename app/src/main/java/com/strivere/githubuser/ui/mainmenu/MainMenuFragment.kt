@@ -1,15 +1,16 @@
 package com.strivere.githubuser.ui.mainmenu
 
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.strivere.githubuser.R
-import com.strivere.githubuser.data.models.GithubUser
+import com.strivere.githubuser.data.GithubUser
 import com.strivere.githubuser.ui.RecyclerViewClickListener
+import com.strivere.githubuser.ui.detail.DetailFragment
 import kotlinx.android.synthetic.main.main_menu_fragment.*
 import org.json.JSONObject
 import java.io.InputStream
@@ -40,10 +41,6 @@ class MainMenuFragment : Fragment(), RecyclerViewClickListener {
         loadJsonFile()
     }
 
-    override fun onRecyclerViewItemClick(view: View, githubUser: GithubUser, id: String) {
-        TODO("Not yet implemented")
-    }
-
     fun loadJsonFile(){
         val inputStream : InputStream = resources.openRawResource(R.raw.githubuser)
         val jsonString: String = Scanner(inputStream).useDelimiter("\\A").next()
@@ -63,7 +60,6 @@ class MainMenuFragment : Fragment(), RecyclerViewClickListener {
                     follower = indexObj.getInt("follower"),
                     following = indexObj.getInt("following")
                 )
-
                 githubUsersList.add(basicInfo)
             }
             rv_main_menu.also {
@@ -75,6 +71,24 @@ class MainMenuFragment : Fragment(), RecyclerViewClickListener {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    override fun onRecyclerViewItemClick(
+        view: View,
+        githubUser: GithubUser,
+        username: String,
+        name: String,
+        avatar: String
+    ) {
+        showDetailFragment(name, username, avatar)
+    }
+
+    fun showDetailFragment(name: String, username: String, avatar: String){
+        val detailFragment : Fragment = DetailFragment.newInstance(name, username, avatar)
+        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment, detailFragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 
 }

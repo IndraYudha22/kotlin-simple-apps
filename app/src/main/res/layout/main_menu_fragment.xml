@@ -7,7 +7,7 @@
     <data>
         <variable
             name="githubuser"
-            type="com.strivere.githubuser.data.models.GithubUser" />
+            type="com.strivere.githubuser.data.GithubUser" />
     </data>
 
     <RelativeLayout
@@ -55,7 +55,7 @@
                     android:layout_marginStart="3dp"/>
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
+            <com.mlsdev.animatedrv.AnimatedRecyclerView
                 android:id="@+id/rv_main_menu"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

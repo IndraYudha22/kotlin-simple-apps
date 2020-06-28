@@ -1,4 +1,4 @@
-package com.strivere.githubuser.data.models
+package com.strivere.githubuser.data
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

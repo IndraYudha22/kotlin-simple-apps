@@ -5,13 +5,11 @@ import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import com.bumptech.glide.Glide
 
 @BindingAdapter("image")
-fun loadImage(view: ImageView, url: String){
-    Glide.with(view)
-        .load(url)
-        .into(view)
-
+fun load(view: ImageView, url: String){
+    val img : Int = view.resources.getIdentifier(url, null, view.context.packageName)
+    val drawable: Drawable = view.resources.getDrawable(img)
+    view.setImageDrawable(drawable)
 }
 
