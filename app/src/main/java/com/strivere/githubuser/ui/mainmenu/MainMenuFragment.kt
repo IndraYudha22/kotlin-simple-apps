@@ -21,18 +21,11 @@ class MainMenuFragment : Fragment(), RecyclerViewClickListener {
 
     private var githubUsersList = arrayListOf<GithubUser>()
 
-
-    companion object {
-        fun newInstance() = MainMenuFragment()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView =  inflater.inflate(R.layout.main_menu_fragment, container, false)
-
-        return rootView
+        return inflater.inflate(R.layout.main_menu_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -41,7 +34,7 @@ class MainMenuFragment : Fragment(), RecyclerViewClickListener {
         loadJsonFile()
     }
 
-    fun loadJsonFile(){
+    private fun loadJsonFile(){
         val inputStream : InputStream = resources.openRawResource(R.raw.githubuser)
         val jsonString: String = Scanner(inputStream).useDelimiter("\\A").next()
 
@@ -74,11 +67,11 @@ class MainMenuFragment : Fragment(), RecyclerViewClickListener {
     }
 
 
-    fun showDetailFragment(name: String, username: String, avatar: String, company: String, location: String, repository: Int, follower: Int, following: Int){
+    fun showDetailFragment(githubUser: GithubUser){
         val bundle = Bundle()
         val detailFragment: Fragment = DetailFragment()
         val transaction = requireActivity().supportFragmentManager.beginTransaction()
-        bundle.putParcelable(Initial.Users, GithubUser(avatar, company, follower, following, location, name, repository, username))
+        bundle.putParcelable(Initial.Users, githubUser)
         detailFragment.arguments = bundle
         transaction.replace(R.id.fragment, detailFragment)
         transaction.addToBackStack(null)
@@ -87,17 +80,9 @@ class MainMenuFragment : Fragment(), RecyclerViewClickListener {
 
     override fun onRecyclerViewItemClick(
         view: View,
-        githubUser: GithubUser,
-        name: String,
-        username: String,
-        avatar: String,
-        company: String,
-        location: String,
-        repository: Int,
-        follower: Int,
-        following: Int
+        githubUser: GithubUser
     ) {
-        showDetailFragment(name, username, avatar, company, location, repository, follower, following)
+        showDetailFragment(githubUser)
     }
 
 }
